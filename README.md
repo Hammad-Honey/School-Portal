@@ -1,0 +1,3 @@
+# React + Vite
+School Portal
+
