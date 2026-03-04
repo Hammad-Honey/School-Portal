@@ -1,7 +1,7 @@
-import AddStudent from "../views/AddStudent"
-import AddCourses from "../views/AddCourses";
+import AddStudent from "../views/teacherViews/AddStudent"
+import AddCourses from "../views/teacherViews/AddCourses";
 import EditCourses from "../views/EditCourses";
-import DeleteCourses from "../views/DeleteCourses";
+import DeleteCourses from "../views/teacherViews/DeleteCourses";
 import Profile from "../views/Profile";
 import TeacherDashboard from "../views/teacherViews/TeacherDashboard";
 

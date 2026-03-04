@@ -1,26 +1,26 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
 import { useAuth } from './contexts/AuthContext';
 
 //Importing Components
 import Home from './components/Home/Home';
 import Teacher from './layouts/TeacherLayout';
 import StudentLayout from './layouts/StudentLayout';
-import Login from './components/Login/login';
-import Profile from './views/Profile';
-import NotFound from './components/404/NotFound';
-import Signup from './components/Signup/signup';
+import TeacherLayout from './layouts/TeacherLayout';
+import AuthLayout from './layouts/AuthLayout';
 import { AuthProvider } from './contexts/AuthContext';
 import { default as studentProfile } from './views/studentViews/StudentProfile';
-import TeacherLayout from './layouts/TeacherLayout';
+
+import Login from './views/authViews/login';
 
 function App() {
 
   const { user } = useAuth()
 
-  const Authanticated = user.Name;
-  const role = user.Role;
+  const Authanticated = user.name;
+  const role = user.role;
   let routes;
+  console.log(user)
   console.log(role)
 
 
@@ -29,17 +29,18 @@ function App() {
   if (!Authanticated) {
     routes = (
       <>
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
+        <Route path='/auth/*' element={<AuthLayout />} />
+        <Route path="*" element={<Navigate to="/auth" />} />
       </>
     );
 
   }
   else if (role === "student") {
+      console.log("role running", role)
+
     routes = (
       <>
-        <Route path='/student' element={<StudentLayout />} />
-        <Route path='/profile' element={<studentProfile />} />
+        <Route path='/student/*' element={<StudentLayout />} />
          <Route path="*" element={<Navigate to="/student/dashboard" />} />
       </>
     );
@@ -50,7 +51,7 @@ function App() {
     routes = (
       <>
         <Route path='/teacher/*' element={<TeacherLayout />} />
-        <Route path="*" element={<Navigate to="/teacher/dashboard" />} />
+        <Route path="*" element={<Navigate to="/teacher" />} />
       </>
     );
 
@@ -60,27 +61,13 @@ function App() {
 
 
   return (
-
-
-    // <AuthProvider>
     <BrowserRouter>
-      <nav>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/teacher">Teacher</Link> |{" "}
-        <Link to="/student">Student</Link>  |{" "}
-        <Link to="/login">Login</Link>  |{" "}
-      </nav>
-
       <Routes>
-
-        <Route path='/' element={<Home />} />
+        
         {routes}
-        {/* <Route path='*' element={<NotFound />} /> */}
-
       </Routes>
 
     </BrowserRouter>
-    // </AuthProvider>
   )
 }
 

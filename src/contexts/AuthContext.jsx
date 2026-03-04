@@ -1,32 +1,46 @@
-import { createContext,useContext,useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-const AuthContext=createContext();
+const AuthContext = createContext();
 
-export function AuthProvider({children}){
-    const [user,setUser]=useState({
-        Name:"",
-        Age:"",
-        Role:"",
+export function AuthProvider({ children }) {
+    const [user, setUser] = useState({
+        name: "",
+        age: "",
+        role: "",
     });
 
-    const login=(logInData)=>{    console.log(logInData); return setUser(logInData)};
+ useEffect(() => {
+    const savedUser = localStorage.getItem("user");
 
-    const logout=()=>setUser({
-    Name: "",
-    Age: "",
-    Role: "",
-  });
+    if (savedUser) {
+        setUser(JSON.parse(savedUser));
+    }
+}, []);
 
-    return(
-        <AuthContext.Provider value={{user,login,logout}}>
+const login = (logInData) => {
+    localStorage.setItem("user", JSON.stringify(logInData));
+    setUser(logInData);
+};
+
+const logout = () => {
+    localStorage.removeItem("user");
+    setUser({
+        name: "",
+        age: "",
+        role: "",
+    });
+};
+
+    return (
+        <AuthContext.Provider value={{ user, login, logout }}>
             {children}
         </AuthContext.Provider>
     )
 }
 // Creating Custom Hook;
-export function useAuth(){
-    const context=useContext(AuthContext);
-    if(!context){
+export function useAuth() {
+    const context = useContext(AuthContext);
+    if (!context) {
         throw new Error("Use Auth must be inside provider");
     }
     return context;

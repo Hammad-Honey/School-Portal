@@ -3,7 +3,7 @@ import StudentProfile from '../views/studentViews/StudentProfile';
 
 const studentRoutes = [
     {
-        path: "/Dashboard",
+        path: "/dashboard",
         name: "Student Dashboard",
         component: <StudentDashboard />,
         layout: "student"

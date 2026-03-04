@@ -1,29 +1,13 @@
 import { Route, Routes, Outlet, Link } from "react-router-dom";
 import teacherRoutes from "../routes/TeacherRoutes";
+import { Fragment } from "react";
 
-
-const getNavLinks = (layout) => {
-
-    layout.map((prop, key) => {
-        if (prop.layout === "teacher") {
-            console.log("Mapping Navlink routes")
-            return (
-                <>
-                    <Link to={`/teacher${prop.path}`}>{prop.name}</Link> | {" "}
-                </>
-            )
-        }
-        else return null;
-    }
-    )
-
-}
 
 
 function TeacherLayout() {
-
+    console.log("Teacher layout rendered")
     const getRoutes = (route) => {
-        route.map((prop, key) => {
+        return route.map((prop, key) => {
             if (prop.layout === "teacher") {
                 console.log("layout Maping is runing")
                 return (
@@ -33,15 +17,27 @@ function TeacherLayout() {
             else return null;
         });
     }
+
+
+    const getNavLinks = (layout) => {
+
+    return layout.map((prop, key) => {
+        if (prop.layout === "teacher")
+            return (
+                <Fragment key={key}>
+                    <Link to={`/teacher/${prop.path}`}> {prop.name}</Link > | {" "}
+                </Fragment>
+            )
+        else return null
+    })
+    }
     return (
         <>
-            <h1>you are in a teacher view</h1>
-            {/* {getNavLinks(TeacherLayout)} */}
-
+            <h1>you are in a teacher Dashboard</h1>
             <Routes>
                 {getRoutes(teacherRoutes)}
             </Routes>
-            <Outlet />
+            {getNavLinks(TeacherLayout)}
         </>
     )
 }
