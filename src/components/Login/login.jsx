@@ -20,7 +20,7 @@ function Login(){
         <>
         <h1>User Login Form</h1>
         <button onClick={()=>loginUser({Name:"hammad",Age:"30",Role:"student"})}>Login as Student</button><div></div>
-        <button onClick={()=>loginUser({Name:"hammad",Age:"30",Role:"teacher"})}>Login as Student</button>
+        <button onClick={()=>loginUser({Name:"hammad",Age:"30",Role:"teacher"})}>Login as Teacher</button>
         </>
     )
 

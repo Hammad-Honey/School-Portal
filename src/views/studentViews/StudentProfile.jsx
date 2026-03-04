@@ -1,4 +1,4 @@
-function Profile() {
+function StudentProfile() {
 
     return (
         <>
@@ -34,4 +34,4 @@ function Profile() {
     )
 }
 
-export default Profile;
+export default StudentProfile;
