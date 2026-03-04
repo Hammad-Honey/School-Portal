@@ -9,7 +9,6 @@ import StudentLayout from './layouts/StudentLayout';
 import TeacherLayout from './layouts/TeacherLayout';
 import AuthLayout from './layouts/AuthLayout';
 import { AuthProvider } from './contexts/AuthContext';
-import { default as studentProfile } from './views/studentViews/StudentProfile';
 
 import Login from './views/authViews/login';
 

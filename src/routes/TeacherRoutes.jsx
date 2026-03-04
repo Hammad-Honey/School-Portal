@@ -1,8 +1,7 @@
 import AddStudent from "../views/teacherViews/AddStudent"
 import AddCourses from "../views/teacherViews/AddCourses";
-import EditCourses from "../views/EditCourses";
+import EditCourses from "../views/teacherViews/EditCourses";
 import DeleteCourses from "../views/teacherViews/DeleteCourses";
-import Profile from "../views/Profile";
 import TeacherDashboard from "../views/teacherViews/TeacherDashboard";
 
 
@@ -37,12 +36,6 @@ const teacherRoutes = [
         component: <DeleteCourses />,
         layout: "teacher",
     },
-        {
-        path: "/profile",
-        name: "Profile",
-        component: <Profile />,
-        layout: "teacher",
-    }
 
 
 ]

@@ -18,26 +18,40 @@ function TeacherLayout() {
         });
     }
 
+    const getNavLinks = (route) => {
+        return route.map((prop, key) => {
+            if (prop.layout === "teacher") {
+                console.log("layout Maping is runing")
+                return (
+                    <Fragment key={key}>
+                        <Link
+                        to={`/teacher/${prop.path} `}>{prop.name}</Link> | {" "}
+                    </Fragment>
 
-    const getNavLinks = (layout) => {
-
-    return layout.map((prop, key) => {
-        if (prop.layout === "teacher")
-            return (
-                <Fragment key={key}>
-                    <Link to={`/teacher/${prop.path}`}> {prop.name}</Link > | {" "}
-                </Fragment>
-            )
-        else return null
-    })
+                )
+            }
+            else return null;
+        });
     }
+
+    // // const getNavLinks = (layout) => {
+    // //     return layout.map((prop, key) => {
+    // //     if (prop.layout === "teacher")
+    // //         return (
+    // //             <Fragment key={key}>
+    // //                 <Link to={`/teacher/${prop.path}`}> {prop.name}</Link > | {" "}
+    // //             </Fragment>
+    // //         )
+    // //     else return null
+    // // })
+    // }
     return (
         <>
-            <h1>you are in a teacher Dashboard</h1>
+            <h1>Teacher Layout</h1>
             <Routes>
                 {getRoutes(teacherRoutes)}
             </Routes>
-            {getNavLinks(TeacherLayout)}
+            {getNavLinks(teacherRoutes)}
         </>
     )
 }
